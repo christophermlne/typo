@@ -13,7 +13,22 @@ describe Admin::CategoriesController do
 
   it "test_index" do
     get :index
-    assert_response :redirect, :action => 'index'
+    assert_response :redirect, :action => 'index' # this code never gets called
+  end
+
+  describe "GET new via INDEX" do
+    it "assigns a new category to @category" do
+      get :new
+      expect(:category['id']).to be_nil
+    end
+    it "renders the new template" do
+      get :new
+      assert_template 'new'
+    end
+  end
+
+  describe "GET new via EDIT" do
+
   end
 
   describe "test_edit" do
