@@ -727,3 +727,21 @@ describe ArticlesController, "assigned keywords" do
     assigns(:keywords).should == "typo, is, amazing"
   end
 end
+
+describe ArticlesController, "merge articles" do
+  before(:each) do
+    Factory(:blog)
+    @article1 = Factory.create(:article,
+                               :created_at => Time.now - 1.day)
+    @article2 = Factory.create(:article,
+                               :created_at => '2004-04-01 12:00:00')
+  end
+  it 'should fire the merge_articles' do
+    
+    Article.stub(:merge)
+    # debugger
+    Article.should_receive(:merge).with(:ID => [1,2])
+    
+    post :merge
+  end
+end

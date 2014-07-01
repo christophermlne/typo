@@ -146,6 +146,10 @@ class ArticlesController < ContentController
     render :text => TextFilter.find(params[:id]).commenthelp
   end
 
+  def merge
+    render :index, :layout => false
+  end
+
   private
 
   def verify_config
