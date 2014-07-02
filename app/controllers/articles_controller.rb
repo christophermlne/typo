@@ -147,7 +147,16 @@ class ArticlesController < ContentController
   end
 
   def merge
-    render :index, :layout => false
+    # receive two ids
+    # pass the ids to the merge method
+    # display a success message
+    # render the edit form for the updated article
+    id1 = params['current_article']
+    id2 = params['merge_with']
+    debugger
+    Article.merge([id1,id2])
+    render :index
+    # render :index, :layout => false
   end
 
   private

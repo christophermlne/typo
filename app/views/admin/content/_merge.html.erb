@@ -1,0 +1,10 @@
+<div class="merge-articles">
+  <%= form_tag(articles_merge_path, :id=>"merge_articles_form", :method => "post") do %>
+  
+  <p>Merge Articles</p>
+  <%= _("Article ID") %> <%= text_field_tag 'merge_with', nil, :class => 'large' %>
+  <input type="hidden" name="current_article" id="current_articles" value="<%= @article.id %>">
+  <%= submit_tag 'Merge' %>
+  
+  <% end %>
+</div>
