@@ -53,16 +53,15 @@ class Admin::ContentController < Admin::BaseController
   end
 
  def merge
-  dlksfjlsdjflkj
-   # id1 = params['current_article']
-   # id2 = params['merge_with']
-   # @article = Article.find(id1)
-   # @other_article = Article.find(id2)
-   # respond_to do |format|
-   #  debugger
-   #   flash[:notice] = _("you tried to merge #{@article.title} with #{@other_article.title}!")
-   #   format.html { redirect_to "/admin/content/edit/#{@article.id}", :layout => false }
-   # end
+   id1 = params['current_article']
+   id2 = params['merge_with']
+   @article = Article.find(id1)
+   @other_article = Article.find(id2)
+   respond_to do |format|
+    debugger
+     flash[:notice] = _("you tried to merge #{@article.title} with #{@other_article.title}!")
+     format.html { redirect_to "/admin/content/edit/#{@article.id}", :layout => false }
+   end
  end
 
   def insert_editor
