@@ -3,6 +3,8 @@
 describe Admin::ContentController do
   render_views
 
+  
+
   # Like it's a shared, need call everywhere
   shared_examples_for 'index action' do
 
@@ -461,8 +463,7 @@ describe Admin::ContentController do
     end
 
   end
-
-
+  
   describe 'with admin connection' do
 
     before do
@@ -671,4 +672,44 @@ describe Admin::ContentController do
 
     end
   end
+end
+
+describe Admin::ContentController do
+  render_views
+describe "merge action" do
+  before(:each) do
+    Factory(:blog)
+    @article1 = Factory.create(:article,
+                               :created_at => Time.now - 1.day)
+    @article2 = Factory.create(:article,
+                               :created_at => '2004-04-01 12:00:00')
+  end
+  it 'should call the find method' do
+    Article.should_receive(:find).with(anything)
+    post :merge, :params => { :current_article => @article1.id, :merge_with => @article2.id }
+  end
+  xit 'should pass on the IDs of the articles to be merged' do
+    #Article.stub(:find)
+    Article.should_receive(:find).with(anything)
+    #Article.should_receive(:find).with(@article2.id).and_return(@article2)
+    post :merge, { :current_article => @article1.id, :merge_with => @article2.id }
+  end
+  xit 'renders the edit template' do
+    post :merge, { :current_article => @article1.id, :merge_with => @article2.id }
+    response.should render_template :new
+  end
+  context 'with valid id' do
+    it 'renders a success message'
+    it 'allows the merge to proceed'
+    it 'should destroy one article'
+  end
+  context 'with invalid id' do
+    it 'renders a fail message'
+    it 'does not merge an article with itself'
+  end
+  context 'with insufficient privileges' do
+    it 'notifies the user'
+    it 'stops the merge'
+  end
+end
 end

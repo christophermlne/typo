@@ -68,9 +68,7 @@ Rails.application.routes.draw do
   match 'articles/markup_help/:id', :to => 'articles#markup_help', :format => false
   match 'articles/tag', :to => 'articles#tag', :format => false
   match 'articles/category', :to => 'articles#category', :format => false
-  match 'articles/merge', :to =>  'articles#merge', :format => false
-
-
+  
   # SetupController
   match '/setup', :to => 'setup#index', :format => false
   match '/setup/confirm', :to => 'setup#confirm', :format => false
@@ -113,7 +111,7 @@ Rails.application.routes.draw do
     match "/admin/#{i}", :to => "admin/#{i}#index", :format => false
     match "/admin/#{i}(/:action(/:id))", :to => "admin/#{i}", :action => nil, :id => nil, :format => false
   end
-
+match '/admin/content/merge', :to =>  'content#merge', :format => false
   # default
   root :to  => 'articles#index', :format => false
 

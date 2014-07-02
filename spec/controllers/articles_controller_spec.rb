@@ -728,36 +728,5 @@ describe ArticlesController, "assigned keywords" do
   end
 end
 
-describe ArticlesController, "merge articles" do
-  before(:each) do
-    Factory(:blog)
-    @article1 = Factory.create(:article,
-                               :created_at => Time.now - 1.day)
-    @article2 = Factory.create(:article,
-                               :created_at => '2004-04-01 12:00:00')
-  end
-  it 'should call the merge method' do
-    Article.stub(:merge)
-    Article.should_receive(:merge).with(anything)
-    post :merge
-  end
-  it 'should pass on the IDs of the articles to be merged' do
-    Article.stub(:merge)
-    Article.should_receive(:merge).with([1,2]).and_return(@article)
-    post :merge, { :current_article => 1, :merge_with => 2 }
-  end
-  it 'renders the edit template'
-  context 'with valid id' do
-    it 'renders a success message'
-    it 'allows the merge to proceed'
-    it 'should destroy one article'
-  end
-  context 'with invalid id' do
-    it 'renders a fail message'
-    it 'does not merge an article with itself'
-  end
-  context 'with insufficient privileges' do
-    it 'notifies the user'
-    it 'stops the merge'
-  end
+
 end

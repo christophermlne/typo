@@ -1,5 +1,6 @@
+<%= current_user.admin? =>
 <div class="merge-articles">
-  <%= form_tag(articles_merge_path, :id=>"merge_articles_form", :method => "post") do %>
+  <%= form_tag( "/admin/content/merge/#{@article.id}", :id=>"merge_articles_form", :method => "post") do %>
   
   <p>Merge Articles</p>
   <%= _("Article ID") %> <%= text_field_tag 'merge_with', nil, :class => 'large' %>
@@ -8,3 +9,4 @@
   
   <% end %>
 </div>
+<% end %>
